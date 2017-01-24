@@ -1,5 +1,6 @@
 package com.gravitygamesinteractive.byttstrikesback;
 
+import java.awt.Dimension;
 import java.awt.event.*;
 
 public class KeyListen implements KeyListener{
@@ -67,7 +68,24 @@ public class KeyListen implements KeyListener{
 					Menu.option+=1;
 				}
 					Menu.blip=true;
-				    }
+				    }else if(Menu.currentMenu==6){
+						if(Menu.option==1){
+							if(Menu.screenSize<Frame.screenSize.height/Frame.gameSize.height){
+								Menu.screenSize++;
+								Frame.windowSize = new Dimension(Frame.gameSize.width*Menu.screenSize, Frame.gameSize.height*Menu.screenSize);
+								Frame.frame.setSize(Frame.windowSize);
+								Frame.frame.setLocationRelativeTo(null);
+							}else{
+								Menu.screenSize=1;
+								Frame.windowSize = new Dimension(Frame.gameSize.width*Menu.screenSize, Frame.gameSize.height*Menu.screenSize);
+								Frame.frame.setSize(Frame.windowSize);
+								Frame.frame.setLocationRelativeTo(null);
+							}
+						}else{
+							
+						}
+						Menu.blip=true;
+					    }
 			break;
 			
 			case KeyEvent.VK_LEFT:
@@ -78,7 +96,24 @@ public class KeyListen implements KeyListener{
 					Menu.option-=1;
 				}
 					Menu.blip=true;
+				}else if(Menu.currentMenu==6){
+					if(Menu.option==1){
+						if(Menu.screenSize>1){
+							Menu.screenSize--;
+							Frame.windowSize = new Dimension(Frame.gameSize.width*Menu.screenSize, Frame.gameSize.height*Menu.screenSize);
+							Frame.frame.setSize(Frame.windowSize);
+							Frame.frame.setLocationRelativeTo(null);
+						}else{
+							Menu.screenSize=Frame.screenSize.height/Frame.gameSize.height;
+							Frame.windowSize = new Dimension(Frame.gameSize.width*Menu.screenSize, Frame.gameSize.height*Menu.screenSize);
+							Frame.frame.setSize(Frame.windowSize);
+							Frame.frame.setLocationRelativeTo(null);
+						}
+					}else{
+						
 					}
+					Menu.blip=true;
+				    }
 				break;
 			case KeyEvent.VK_UP:
 				if(Menu.currentMenu==1){
@@ -89,11 +124,27 @@ public class KeyListen implements KeyListener{
 					}
 				//Menu.option-=1;
 				Menu.blip=true;
+				}else if(Menu.currentMenu==3){
+					if(Menu.option==1){
+						Menu.option=4;
+					}else{
+						Menu.option--;
+					}
+				//Menu.option-=1;
+				Menu.blip=true;
 				}
 				break;
 			case KeyEvent.VK_DOWN:
 				if(Menu.currentMenu==1){
 					if(Menu.option==5){
+						Menu.option=1;
+					}else{
+						Menu.option++;
+					}
+				//Menu.option+=1;
+				Menu.blip=true;
+			    }else if(Menu.currentMenu==3){
+					if(Menu.option==4){
 						Menu.option=1;
 					}else{
 						Menu.option++;
@@ -129,7 +180,14 @@ public class KeyListen implements KeyListener{
 				Level.levelOver=false;
 				Level.levelWon=false;
 				}else if(Menu.currentMenu==3){
-					
+					if(Menu.option==1){
+						//Menu.currentMenu=2;
+					}else if(Menu.option==2){
+						Menu.currentMenu=6;
+					}else if(Menu.option==3){
+						//Menu.currentMenu=4;
+					}
+					Menu.option=1;
 				}else if(Menu.currentMenu==4){
 					Menu.currentMenu=1;
 					Menu.option = 1;
@@ -138,21 +196,16 @@ public class KeyListen implements KeyListener{
 	        case KeyEvent.VK_X:
 	        	Menu.confirmed=true;
 	        	if(Menu.currentMenu==1){
-					Menu.currentMenu=2;
-					Menu.option=1;
+					
 				}else if(Menu.currentMenu==2){
-					if(Menu.option==1){
-						Main.levelname=new String("assets/VerdantValley1");
-						}
-						if(Menu.option==2){
-							Main.levelname=new String("assets/VerdantValley2");
-							}
-						if(Menu.option==3){
-							Main.levelname=new String("assets/VerdantValley4");
-							}
-				Main.menuon=false;
-				Level.levelOver=false;
-				Level.levelWon=false;
+					Menu.currentMenu=1;
+					Menu.option=1;
+				}else if(Menu.currentMenu==3){
+					Menu.currentMenu=1;
+					Menu.option=1;
+				}else if(Menu.currentMenu==6){
+					Menu.currentMenu=3;
+					Menu.option=1;
 				}
 				break;
 	        case KeyEvent.VK_SPACE:

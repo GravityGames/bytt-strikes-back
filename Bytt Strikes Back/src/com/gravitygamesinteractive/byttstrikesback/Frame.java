@@ -9,6 +9,7 @@ public class Frame{
 	public static Dimension realsize;
 	public static Dimension windowSize = new Dimension(640,480);
 	public static Dimension gameSize = new Dimension(320,240);
+	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	//public static Dimension gameSize = new Dimension(640,480);
 	
 	public static String name="Bytt Strikes Back!";
@@ -24,7 +25,7 @@ public class Frame{
 public static JFrame frame;
 public static Main main;
 public static void main(String args[]){
-	JFrame frame=new JFrame();
+	frame=new JFrame();
     frame.setSize(windowSize);
     main=new Main();
     frame.add(main);

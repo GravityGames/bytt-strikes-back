@@ -17,6 +17,7 @@ public class Menu extends JComponent{
 	
 	public static int option=1;
 	public static int currentMenu=1;
+	public static int screenSize = 2;
 	public static boolean blip=false,confirmed=false;;
 	public static ImageIcon pointer;
 	public static ImageIcon a,l,p,y;
@@ -97,6 +98,18 @@ public class Menu extends JComponent{
 		Text.drawString("VIDEO OPTIONS", g, Main.font, Frame.gameSize.width/2, 45, Text.CENTER);
 		Text.drawString("AUDIO OPTIONS", g, Main.font, Frame.gameSize.width/2, 60, Text.CENTER);
 		Text.drawString("GAME OPTIONS", g, Main.font, Frame.gameSize.width/2, 75, Text.CENTER);
+		if (option==1){
+			pointer.paintIcon(this,g,60, 30-5);
+		}
+		if (option==2){
+			pointer.paintIcon(this,g,60, 45-5);
+		}
+		if (option==3){
+			pointer.paintIcon(this,g,60, 60-5);
+		}
+		if (option==4){
+			pointer.paintIcon(this,g,60, 75-5);
+		}
 		//Text.drawString("CONFIGURE CONTROLS", g, Main.font, Frame.gameSize.width/2, 90, Text.CENTER);
 	}else if(currentMenu==4){
 		Text.drawString("FONT BY CLINT BELLANGER", g, Main.font, Frame.gameSize.width/2, 30, Text.CENTER);
@@ -104,6 +117,11 @@ public class Menu extends JComponent{
 		Text.drawString("EVERYTHING ELSE BY", g, Main.font, Frame.gameSize.width/2, 60, Text.CENTER);
 		Text.drawString("IMPOSSIBLE REALMS/", g, Main.font, Frame.gameSize.width/2, 75, Text.CENTER);
 		Text.drawString("GRAVITY GAMES INTERACTIVE", g, Main.font, Frame.gameSize.width/2, 90, Text.CENTER);
+	}else if(currentMenu==5){
+		
+	}else if(currentMenu==6){
+		//Text.drawString("SCREEN SIZE", g, Main.font, Frame.gameSize.width/2, 30, Text.CENTER);
+		Text.drawString("SCREEN SIZE   < " + Integer.toString((Frame.windowSize.width/Frame.gameSize.width)) + "X >", g, Main.font, Frame.gameSize.width/2, 30, Text.CENTER);
 	}
 	}
 	private void playSound(){
