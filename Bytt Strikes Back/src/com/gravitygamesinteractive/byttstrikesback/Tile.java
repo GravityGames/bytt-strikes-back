@@ -13,6 +13,7 @@ public class Tile extends Rectangle{
 	public int TileId;
 	
 	public static int[] g1top={0,0};
+	public static Image tileset1;
 	public static ImageIcon tileset1groundlefttop;
 	public static ImageIcon tileset1groundtop;
 	public static ImageIcon tileset1groundrighttop;
@@ -76,50 +77,65 @@ public void tick(){
 	public void render(Graphics g, Component c){
 		g.setColor(Color.red);
 		if (TileId==1){
-		tileset1groundlefttop.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+		//tileset1groundlefttop.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+		g.drawImage(tileset1, x-Frame.sx, y-Frame.sy, x+16-Frame.sx, y+16-Frame.sy, 0, 0, 16, 16, null);
 		}
 		if (TileId==2){
 			//g.fillRect(x-Frame.sx,y-Frame.sy,16,16);
-			tileset1groundtop.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			//tileset1groundtop.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			g.drawImage(tileset1, x-Frame.sx, y-Frame.sy, x+16-Frame.sx, y+16-Frame.sy, 16, 0, 32, 16, null);
 		}
 		if (TileId==3){
-			tileset1groundrighttop.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			//tileset1groundrighttop.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			g.drawImage(tileset1, x-Frame.sx, y-Frame.sy, x+16-Frame.sx, y+16-Frame.sy, 32, 0, 48, 16, null);
 		}
 		if (TileId==4){
-			tileset1groundleft.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			//tileset1groundleft.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			g.drawImage(tileset1, x-Frame.sx, y-Frame.sy, x+16-Frame.sx, y+16-Frame.sy, 0, 16, 16, 32, null);
 		}
 		if (TileId==5){
-			tileset1ground.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			//tileset1ground.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			g.drawImage(tileset1, x-Frame.sx, y-Frame.sy, x+16-Frame.sx, y+16-Frame.sy, 16, 16, 32, 32, null);
 		}
 		if (TileId==6){
-			tileset1groundright.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			//tileset1groundright.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			g.drawImage(tileset1, x-Frame.sx, y-Frame.sy, x+16-Frame.sx, y+16-Frame.sy, 32, 16, 48, 32, null);
 		}
 		if (TileId==7){
-			tileset1groundbotleft.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			//tileset1groundbotleft.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			g.drawImage(tileset1, x-Frame.sx, y-Frame.sy, x+16-Frame.sx, y+16-Frame.sy, 0, 32, 16, 48, null);
 		}
 		if (TileId==8){
-			tileset1groundbot.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			//tileset1groundbot.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			g.drawImage(tileset1, x-Frame.sx, y-Frame.sy, x+16-Frame.sx, y+16-Frame.sy, 16, 32, 32, 48, null);
 		}
 		if (TileId==9){
-			tileset1groundbotright.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			//tileset1groundbotright.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			g.drawImage(tileset1, x-Frame.sx, y-Frame.sy, x+16-Frame.sx, y+16-Frame.sy, 32, 32, 48, 48, null);
 		}
 		if (TileId==19){
-			tileset1spike1.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			//tileset1spike1.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			g.drawImage(tileset1, x-Frame.sx, y-Frame.sy, x+16-Frame.sx, y+16-Frame.sy, 48, 0, 64, 16, null);
 		}
 		if (TileId==45){
-			tileset1deco1.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			//tileset1deco1.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			g.drawImage(tileset1, x-Frame.sx, y-Frame.sy, x+16-Frame.sx, y+16-Frame.sy, 64, 0, 80, 16, null);
 		}
 		if (TileId==46){
-			tileset1deco2.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			//tileset1deco2.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			g.drawImage(tileset1, x-Frame.sx, y-Frame.sy, x+16-Frame.sx, y+16-Frame.sy, 80, 0, 96, 16, null);
 		}
 		if (TileId==47){
-			tileset1deco3.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			//tileset1deco3.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			g.drawImage(tileset1, x-Frame.sx, y-Frame.sy, x+16-Frame.sx, y+16-Frame.sy, 96, 0, 112, 16, null);
 		}
 		if (TileId==48){
-			tileset1deco4.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			//tileset1deco4.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			g.drawImage(tileset1, x-Frame.sx, y-Frame.sy, x+16-Frame.sx, y+16-Frame.sy, 112, 0, 128, 16, null);
 		}
 		if (TileId==49){
-			tileset1deco5.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			//tileset1deco5.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			g.drawImage(tileset1, x-Frame.sx, y-Frame.sy, x+16-Frame.sx, y+16-Frame.sy, 128, 0, 144, 16, null);
 		}
 	}
 }

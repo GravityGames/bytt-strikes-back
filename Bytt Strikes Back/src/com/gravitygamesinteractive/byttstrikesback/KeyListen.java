@@ -82,12 +82,22 @@ public class KeyListen implements KeyListener{
 				break;
 			case KeyEvent.VK_UP:
 				if(Menu.currentMenu==1){
+					if(Menu.option==1){
+						Menu.option=5;
+					}else{
+						Menu.option--;
+					}
 				//Menu.option-=1;
 				Menu.blip=true;
 				}
 				break;
 			case KeyEvent.VK_DOWN:
 				if(Menu.currentMenu==1){
+					if(Menu.option==5){
+						Menu.option=1;
+					}else{
+						Menu.option++;
+					}
 				//Menu.option+=1;
 				Menu.blip=true;
 			    }
@@ -95,8 +105,16 @@ public class KeyListen implements KeyListener{
 			case KeyEvent.VK_Z:
 				Menu.confirmed=true;
 				if(Menu.currentMenu==1){
-					Menu.currentMenu=2;
-					Menu.option=1;
+					if(Menu.option==1){
+						Menu.currentMenu=2;
+						Menu.option=1;
+					}else if(Menu.option==2){
+						Menu.currentMenu=3;
+						Menu.option=1;
+					}else if(Menu.option==3){
+						Menu.currentMenu=4;
+						Menu.option=1;
+					}
 				}else if(Menu.currentMenu==2){
 					if(Menu.option==1){
 						Main.levelname=new String("assets/VerdantValley1");
@@ -110,6 +128,11 @@ public class KeyListen implements KeyListener{
 				Main.menuon=false;
 				Level.levelOver=false;
 				Level.levelWon=false;
+				}else if(Menu.currentMenu==3){
+					
+				}else if(Menu.currentMenu==4){
+					Menu.currentMenu=1;
+					Menu.option = 1;
 				}
 				break;
 	        case KeyEvent.VK_X:

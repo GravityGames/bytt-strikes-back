@@ -7,7 +7,9 @@ public class Frame{
 	private static final long serialVersionUID=1L;
 	
 	public static Dimension realsize;
-	public static Dimension size = new Dimension(640,480);
+	public static Dimension windowSize = new Dimension(640,480);
+	public static Dimension gameSize = new Dimension(320,240);
+	//public static Dimension gameSize = new Dimension(640,480);
 	
 	public static String name="Bytt Strikes Back!";
 	public static int sx=0,sy=0;
@@ -23,7 +25,7 @@ public static JFrame frame;
 public static Main main;
 public static void main(String args[]){
 	JFrame frame=new JFrame();
-    frame.setSize(size);
+    frame.setSize(windowSize);
     main=new Main();
     frame.add(main);
 	

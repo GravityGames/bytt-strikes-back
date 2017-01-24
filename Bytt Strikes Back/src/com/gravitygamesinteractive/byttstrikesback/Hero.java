@@ -76,9 +76,9 @@ public class Hero {
 		if(health>0){
 			if(!isCollidingWithWall(new Point(x+width,y), new Point(x+width+2,y+height-5))){
 			x+=3;
-			if(x>=Frame.size.width/2 && Frame.sx<Level.maxx+16-Frame.size.width){
+			if(x>=Frame.gameSize.width/2 && Frame.sx<Level.maxx+16-Frame.gameSize.width){
 			Frame.sx+=3;
-			}else if(x>=Frame.size.width/2){
+			}else if(x>=Frame.gameSize.width/2){
 				
 			}
 			}else{
@@ -102,14 +102,18 @@ public class Hero {
 						fallspeed+=1;
 					}else{
 						y+=fallspeed;
-						if(Frame.sy>0 && Frame.sy<(Level.maxy+16-Frame.size.height)){
+						if(Frame.sy>0 && Frame.sy<(Level.maxy+16-(Frame.gameSize.height))){
 							Frame.sy+=fallspeed;
 						}
 						jdecCount+=1;
 					}
 					}else{
 					y+=fallspeed;
-				    
+					if(Frame.sy>0 && Frame.sy<(Level.maxy-(Frame.gameSize.height))){
+						Frame.sy+=fallspeed;
+					}else if(Frame.sy>=(Level.maxy-(Frame.gameSize.height))){
+						Frame.sy=(Level.maxy-(Frame.gameSize.height));
+					}
 				    }
 			}else{
 				fallspeed=1;
@@ -190,7 +194,7 @@ public class Hero {
 					jumpSpeed-=1;
 				}else{
 					y-=jumpSpeed;
-					if(Frame.sy>0){
+					if(Frame.sy>0 && y-Frame.sy<(Frame.gameSize.height/2)){
 						Frame.sy-=jumpSpeed;
 					}
 					jdecCount+=1;

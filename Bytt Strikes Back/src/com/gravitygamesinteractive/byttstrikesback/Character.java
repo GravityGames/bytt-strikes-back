@@ -96,12 +96,13 @@ public class Character {
 			if(Frame.dir<0 && x>Level.minx){
 				x+=Frame.dir;
 			}
-			if(Frame.dir>0 && Frame.sx<(Level.maxx+16-Frame.size.width) && x>=(startx+Frame.sx)){
+			if(Frame.dir>0 && Frame.sx<(Level.maxx+16-Frame.gameSize.width) && x>Frame.sx+(Frame.gameSize.width/2)-moveSpeed && x<Frame.sx+(Frame.gameSize.width/2)+moveSpeed){
 			Frame.sx+=Frame.dir;
 			}
 			if(Frame.dir<0 && Frame.sx>Level.minx && x<=(startx+Frame.sx)){
 				Frame.sx+=Frame.dir;
 			}
+			
 			if(!isJumping && !isCollidingWithFloor(new Point(x,(y+height)),new Point((x+16),(y+height)))){
 				//if(!fallbypass){
 				allowFall=true;
@@ -166,6 +167,12 @@ public class Character {
 			if(!isCollidingWithFloor(new Point(x,(y+height)),new Point((x+16),(y+height)))){
 			y+=verticalMoveSpeed;
 			}
+		}
+		
+		if(y-(Frame.gameSize.height/2)<Level.maxy){
+			Frame.sy=y-(Frame.gameSize.height/2);
+		}else{
+			Frame.sy=Level.maxy-(Frame.gameSize.height/2);
 		}
 		
 		if(spawningEnemy && Level.Timer>0 && !spaceDown){
