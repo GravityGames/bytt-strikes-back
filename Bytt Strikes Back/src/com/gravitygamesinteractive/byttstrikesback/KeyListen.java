@@ -1,253 +1,103 @@
 package com.gravitygamesinteractive.byttstrikesback;
 
+import java.awt.Dimension;
 import java.awt.event.*;
 
 public class KeyListen implements KeyListener{
 	public static boolean downpressed=false;
 
-	public void keyPressed(KeyEvent e){
-		int key = e.getKeyCode();
-		
-		if(!Main.menuon && !Level.levelOver){
-		switch(key){
-		case KeyEvent.VK_RIGHT:
-		Frame.isMoving=true;
-		Frame.dir=Character.moveSpeed;
-		Main.Kylex=Level.kyle.x-8-Frame.sx;
-		Main.Kyley=Level.kyle.y-Frame.sy;
-		//Main.Kylex+=3;
-		break;
-		
-		case KeyEvent.VK_LEFT:
-			Frame.isMoving=true;
-			Frame.dir=-Character.moveSpeed;
-			break;
-		case KeyEvent.VK_UP:
-			Character.movingup=true;
-			Character.movingdown=false;
-			break;
-		case KeyEvent.VK_DOWN:
-			Character.movingup=false;
-			Character.movingdown=true;
-			break;
-		case KeyEvent.VK_Z:
-			if(Level.currentEnemy==1){
-				Level.currentEnemy=2;
-			}else{
-				Level.currentEnemy-=1;
-			}
-			break;
-        case KeyEvent.VK_X:
-        	if(Level.currentEnemy==2){
-				Level.currentEnemy=1;
-			}else{
-				Level.currentEnemy+=1;
-			}
-			break;
-        case KeyEvent.VK_SPACE:
-			Character.spawningEnemy=true;
-			Character.spaceDown=true;
-			//Character.spawnSoundPlaying=true;
-			break;
-		case KeyEvent.VK_ENTER:
-			if(Level.Timer>0){
-			Level.Timer=0;
-			}else{
-				Frame.sx=0;
-			}
-			break;
+	public static boolean[] input, inputJustPressed;
+	public static int[] inputMap;
+
+	public static final int KEYS = 14;
+
+	/*
+		Keymapping is as follows:
+
+		0 - Menu Up
+		1 - Menu Down
+		2 - Menu Left
+		3 - Menu Right
+		4 - Confirm
+		5 - Back
+
+		6 - Move Up
+		7 - Move Down
+		8 - Move Left
+		9 - Move Right
+		10 - Cycle Left
+		11 - Cycle Right
+		12 - Spawn
+		13 - End Setup
+	 */
+
+	public KeyListen() {
+		System.out.println("Test");
+		input = new boolean[KEYS];
+		inputJustPressed = new boolean[KEYS];
+		inputMap = new int[KEYS];
+
+		for(int i=0; i<KEYS; i++) {
+			input[i] = false;
+			inputJustPressed[i] = false;
 		}
-		}else if(Main.menuon){
-			switch(key){
-			case KeyEvent.VK_RIGHT:
-				if(Menu.currentMenu==2){
-					if(Menu.option==3){
-						Menu.option=1;
-					}else{
-					Menu.option+=1;
+
+		keySetup();
+
+	}
+
+	public void keySetup() {
+		inputMap[0] = KeyEvent.VK_UP;
+		inputMap[1] = KeyEvent.VK_DOWN;
+		inputMap[2] = KeyEvent.VK_LEFT;
+		inputMap[3] = KeyEvent.VK_RIGHT;
+		inputMap[4] = KeyEvent.VK_Z;
+		inputMap[5] = KeyEvent.VK_X;
+
+		inputMap[6] = KeyEvent.VK_UP;
+		inputMap[7] = KeyEvent.VK_DOWN;
+		inputMap[8] = KeyEvent.VK_LEFT;
+		inputMap[9] = KeyEvent.VK_RIGHT;
+		inputMap[10] = KeyEvent.VK_Z;
+		inputMap[11] = KeyEvent.VK_X;
+		inputMap[12] = KeyEvent.VK_SPACE;
+		inputMap[13] = KeyEvent.VK_ENTER;
+	}
+
+	public void keyPressed(KeyEvent e) {
+		int key = e.getKeyCode();
+
+		for(int i=0; i<KEYS; i++) {
+			if(inputMap[i] == key) {
+				if(!input[i]) {
+					inputJustPressed[i]=true;
 				}
-					Menu.blip=true;
-				    }
-			break;
-			
-			case KeyEvent.VK_LEFT:
-				if(Menu.currentMenu==2){
-					if(Menu.option==1){
-						Menu.option=3;
-					}else{
-					Menu.option-=1;
-				}
-					Menu.blip=true;
-					}
-				break;
-			case KeyEvent.VK_UP:
-				if(Menu.currentMenu==1){
-				//Menu.option-=1;
-				Menu.blip=true;
-				}
-				break;
-			case KeyEvent.VK_DOWN:
-				if(Menu.currentMenu==1){
-				//Menu.option+=1;
-				Menu.blip=true;
-			    }
-				break;
-			case KeyEvent.VK_Z:
-				Menu.confirmed=true;
-				if(Menu.currentMenu==1){
-					Menu.currentMenu=2;
-					Menu.option=1;
-				}else if(Menu.currentMenu==2){
-					if(Menu.option==1){
-						Main.levelname=new String("assets/VerdantValley1");
-						}
-						if(Menu.option==2){
-							Main.levelname=new String("assets/VerdantValley2");
-							}
-						if(Menu.option==3){
-							Main.levelname=new String("assets/VerdantValley4");
-							}
-				Main.menuon=false;
-				Level.levelOver=false;
-				Level.levelWon=false;
-				}
-				break;
-	        case KeyEvent.VK_X:
-	        	Menu.confirmed=true;
-	        	if(Menu.currentMenu==1){
-					Menu.currentMenu=2;
-					Menu.option=1;
-				}else if(Menu.currentMenu==2){
-					if(Menu.option==1){
-						Main.levelname=new String("assets/VerdantValley1");
-						}
-						if(Menu.option==2){
-							Main.levelname=new String("assets/VerdantValley2");
-							}
-						if(Menu.option==3){
-							Main.levelname=new String("assets/VerdantValley4");
-							}
-				Main.menuon=false;
-				Level.levelOver=false;
-				Level.levelWon=false;
-				}
-				break;
-	        case KeyEvent.VK_SPACE:
-	        	Menu.confirmed=true;
-	        	if(Menu.currentMenu==1){
-					Menu.currentMenu=2;
-					Menu.option=1;
-				}else if(Menu.currentMenu==2){
-					if(Menu.option==1){
-						Main.levelname=new String("assets/VerdantValley1");
-						}
-						if(Menu.option==2){
-							Main.levelname=new String("assets/VerdantValley2");
-							}
-						if(Menu.option==3){
-							Main.levelname=new String("assets/VerdantValley4");
-							}
-				Main.menuon=false;
-				Level.levelOver=false;
-				Level.levelWon=false;
-				}
-				break;
-			case KeyEvent.VK_ENTER:
-				Menu.confirmed=true;
-				if(Menu.currentMenu==1){
-					Menu.currentMenu=2;
-					Menu.option=1;
-				}else if(Menu.currentMenu==2){
-					if(Menu.option==1){
-						Main.levelname=new String("assets/VerdantValley1");
-						}
-						if(Menu.option==2){
-							Main.levelname=new String("assets/VerdantValley2");
-							}
-						if(Menu.option==3){
-							Main.levelname=new String("assets/VerdantValley4");
-							}
-				Main.menuon=false;
-				Level.levelOver=false;
-				Level.levelWon=false;
-				}
-				break;
-			}
-		}else if(Level.levelOver){
-			switch(key){
-			case KeyEvent.VK_Z:
-				Main.statscreenover=true;
-				Level.levelOver=false;
-				Level.levelWon=false;
-				break;
-	        case KeyEvent.VK_X:
-	        	Main.statscreenover=true;
-	        	Level.levelOver=false;
-				Level.levelWon=false;
-				break;
-	        case KeyEvent.VK_SPACE:
-	        	Main.statscreenover=true;
-	        	Level.levelOver=false;
-				Level.levelWon=false;
-				break;
-			case KeyEvent.VK_ENTER:
-				Main.statscreenover=true;
-				Level.levelOver=false;
-				Level.levelWon=false;
-				break;
+				input[i]=true;
 			}
 		}
 	}
 
-	public void keyReleased(KeyEvent e){
+	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
-		
-		switch(key){
-		case KeyEvent.VK_RIGHT:
-		if(Frame.dir==Character.moveSpeed){
-			Frame.isMoving=true;
-			Frame.dir=0;
-		}
-		break;
-		
-		case KeyEvent.VK_LEFT:
-			if(Frame.dir==-Character.moveSpeed){
-				Frame.isMoving=true;
-				Frame.dir=0;
+
+		for(int i=0; i<KEYS; i++) {
+			if(inputMap[i] == key) {
+				inputJustPressed[i]=false;
+				input[i]=false;
 			}
-			break;
-		case KeyEvent.VK_UP:
-			Character.movingup=false;
-			Character.movingdown=false;
-			break;
-		case KeyEvent.VK_DOWN:
-			Character.movingup=false;
-			Character.movingdown=false;
-			break;
-		case KeyEvent.VK_Z:
-			//Frame.isJumping=false;
-			//Character.isJumping=false;
-			Character.allowFall=true;
-			downpressed=false;
-			if(Character.allowFall){
-			Character.jumpCount=Character.jumpHeight;
-			}
-		break;
-		case KeyEvent.VK_SPACE:
-			Character.spaceDown=false;
-		break;
 		}
 	}
+
 	public void keyTyped(KeyEvent e){
 		int key = e.getKeyCode();
-		
+
 		switch(key){
 		case KeyEvent.VK_RIGHT:
-		
-		break;
-		
+
+			break;
+
 		case KeyEvent.VK_LEFT:
-			
+
 			break;
 		}
 	}

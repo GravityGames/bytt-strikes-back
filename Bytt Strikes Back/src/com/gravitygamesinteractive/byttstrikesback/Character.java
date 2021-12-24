@@ -9,8 +9,9 @@ import java.util.Scanner;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 import javax.swing.ImageIcon;
-import sun.audio.*;
+//import sun.audio.*;
 
 
 public class Character {
@@ -21,6 +22,7 @@ public class Character {
 	public static int getx,gety;
 	public static int tiley;
 	private Scanner charfile;
+	public boolean up = false, down = false, left = false, right = false;
 	public static boolean movingup,movingdown,spawningEnemy,spawnSoundPlaying=true,spaceDown;
 	public static int spawnCount,spawnTime=1;
 	public static int health=3;
@@ -76,6 +78,70 @@ public class Character {
 
 	}
 	
+	public void input() {
+		if(!Level.levelOver) {
+			if(KeyListen.input[8] && !KeyListen.input[9]) {
+				left = true;
+				right = false;
+				//Frame.isMoving=true;
+				//Frame.dir=-Character.moveSpeed;
+			}else if(!KeyListen.input[8] && KeyListen.input[9]) {
+				left = false;
+				right = true;
+				//Frame.isMoving=true;
+				//Frame.dir=Character.moveSpeed;
+				//Main.Kylex=Level.kyle.x-8-Frame.sx;
+				//Main.Kyley=Level.kyle.y-Frame.sy;
+			}else {
+				left = false;
+				right = false;
+			}
+
+			if(KeyListen.input[6] && !KeyListen.input[7]) {
+				up=true;
+				down=false;
+			}else if(!KeyListen.input[6] && KeyListen.input[7]) {
+				up=false;
+				down=true;
+			}else {
+				up = false;
+				down = false;
+			}
+			
+			if(KeyListen.inputJustPressed[10] && !KeyListen.inputJustPressed[11]) {
+				if(Level.currentEnemy==1){
+					Level.currentEnemy=2;
+				}else{
+					Level.currentEnemy-=1;
+				}
+			}else if(!KeyListen.inputJustPressed[10] && KeyListen.inputJustPressed[11]) {
+				if(Level.currentEnemy==2){
+					Level.currentEnemy=1;
+				}else{
+					Level.currentEnemy+=1;
+				}
+			}
+			
+			if(KeyListen.inputJustPressed[12]) {
+				Character.spawningEnemy=true;
+				Character.spaceDown=true;
+			}
+			
+			if(!KeyListen.input[12] && spawningEnemy) {
+				Character.spaceDown=false;
+			}
+			
+			if(KeyListen.inputJustPressed[13]) {
+				if(Level.Timer>0){
+					Level.Timer=0;
+				}else{
+					Frame.sx=0;
+				}
+			}
+			
+		}
+	}
+	
 	public void tick(){
 		//Main.Kylex=x-8-Frame.sx;
 		//Main.Kyley=y-Frame.sy;
@@ -96,12 +162,13 @@ public class Character {
 			if(Frame.dir<0 && x>Level.minx){
 				x+=Frame.dir;
 			}
-			if(Frame.dir>0 && Frame.sx<(Level.maxx+16-Frame.size.width) && x>=(startx+Frame.sx)){
+			if(Frame.dir>0 && Frame.sx<(Level.maxx+16-Frame.gameSize.width) && x>Frame.sx+(Frame.gameSize.width/2)-moveSpeed && x<Frame.sx+(Frame.gameSize.width/2)+moveSpeed){
 			Frame.sx+=Frame.dir;
 			}
 			if(Frame.dir<0 && Frame.sx>Level.minx && x<=(startx+Frame.sx)){
 				Frame.sx+=Frame.dir;
 			}
+			
 			if(!isJumping && !isCollidingWithFloor(new Point(x,(y+height)),new Point((x+16),(y+height)))){
 				//if(!fallbypass){
 				allowFall=true;
@@ -157,15 +224,35 @@ public class Character {
 			}
 		}
 		
-		if(movingup){
+		if(up){
 			if(!isCollidingWithCeiling(new Point(x,(y)),new Point((x+16),(y)))){
 			y-=verticalMoveSpeed;
 			}
 		}
-		if(movingdown){
+		if(down){
 			if(!isCollidingWithFloor(new Point(x,(y+height)),new Point((x+16),(y+height)))){
 			y+=verticalMoveSpeed;
 			}
+		}
+		if(right) {
+			Frame.isMoving=true;
+			Frame.dir=Character.moveSpeed;
+			Main.Kylex=Level.kyle.x-8-Frame.sx;
+			Main.Kyley=Level.kyle.y-Frame.sy;
+		}else if(left) {
+			Frame.isMoving=true;
+			Frame.dir=-Character.moveSpeed;
+			Main.Kylex=Level.kyle.x-8-Frame.sx;
+			Main.Kyley=Level.kyle.y-Frame.sy;
+		}else {
+			Frame.isMoving=true;
+			Frame.dir=0;
+		}
+		
+		if(y-(Frame.gameSize.height/2)<Level.maxy){
+			Frame.sy=y-(Frame.gameSize.height/2);
+		}else{
+			Frame.sy=Level.maxy-(Frame.gameSize.height/2);
 		}
 		
 		if(spawningEnemy && Level.Timer>0 && !spaceDown){
@@ -187,6 +274,11 @@ public class Character {
 	        // getAudioInputStream() also accepts a File or InputStream
 	        AudioInputStream spawnsound = AudioSystem.getAudioInputStream(spawn);
 	        clip.open(spawnsound);
+	        
+	        FloatControl control = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+	        control.setValue(20f * (float) Math.log10(Main.soundVolume));
+	        //clip.start();
+	        
 	        clip.loop(0);
 	        if(spawnSoundPlaying=false){
 	        clip.close();
@@ -203,6 +295,10 @@ public class Character {
 	        // getAudioInputStream() also accepts a File or InputStream
 	        AudioInputStream spawnsound = AudioSystem.getAudioInputStream(spawn);
 	        clip.open(spawnsound);
+	        
+	        FloatControl control = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+	        control.setValue(20f * (float) Math.log10(Main.soundVolume));
+	        
 	        clip.loop(0);
 	        /*if(spawnSoundPlaying=false){
 	        clip.close();
