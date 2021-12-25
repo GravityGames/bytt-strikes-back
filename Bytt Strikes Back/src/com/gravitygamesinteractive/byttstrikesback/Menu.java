@@ -214,8 +214,8 @@ public class Menu extends JComponent{
 			}
 		}else if(!KeyListen.inputJustPressed[4] && KeyListen.inputJustPressed[5]) {
 			Menu.confirmed=true;
-        	if(Menu.currentMenu==1){
-				
+			if(Menu.currentMenu==1){
+
 			}else if(Menu.currentMenu==2){
 				Menu.currentMenu=1;
 				Menu.option=1;
@@ -329,32 +329,32 @@ public class Menu extends JComponent{
 			if (option==2){
 				pointer.paintIcon(this,g,45, 45-5);
 			}
-		}
+			//}
 
-		//Text.drawString("CONFIGURE CONTROLS", g, Main.font, Frame.gameSize.width/2, 90, Text.CENTER);
-	}else if(currentMenu==4){
-		Text.drawString("FONT BY CLINT BELLANGER", g, Main.font, Frame.gameSize.width/2, 30, Text.CENTER);
-		
-		Text.drawString("EVERYTHING ELSE BY", g, Main.font, Frame.gameSize.width/2, 60, Text.CENTER);
-		Text.drawString("IMPOSSIBLE REALMS/", g, Main.font, Frame.gameSize.width/2, 75, Text.CENTER);
-		Text.drawString("GRAVITY GAMES INTERACTIVE", g, Main.font, Frame.gameSize.width/2, 90, Text.CENTER);
-	}else if(currentMenu==5){
-		
-	}else if(currentMenu==6){
-		//Text.drawString("SCREEN SIZE", g, Main.font, Frame.gameSize.width/2, 30, Text.CENTER);
-		Text.drawString("SCREEN SIZE   < " + Integer.toString((Frame.windowSize.width/Frame.gameSize.width)) + "X >", g, Main.font, Frame.gameSize.width/2, 30, Text.CENTER);
-	}else if(currentMenu==7){
-		//Text.drawString("SCREEN SIZE", g, Main.font, Frame.gameSize.width/2, 30, Text.CENTER);
-		Text.drawString("MUSIC VOLUME   < " + Integer.toString((int)(Main.musicVolume * 100)) + "% >", g, Main.font, Frame.gameSize.width/2, 30, Text.CENTER);
-		Text.drawString("SFX VOLUME   < " + Integer.toString((int)(Main.soundVolume * 100)) + "% >", g, Main.font, Frame.gameSize.width/2, 45, Text.CENTER);
-		
-		if (option==1){
-			pointer.paintIcon(this,g,45, 30-5);
+			//Text.drawString("CONFIGURE CONTROLS", g, Main.font, Frame.gameSize.width/2, 90, Text.CENTER);
+		}else if(currentMenu==4){
+			Text.drawString("FONT BY CLINT BELLANGER", g, Main.font, Frame.gameSize.width/2, 30, Text.CENTER);
+
+			Text.drawString("EVERYTHING ELSE BY", g, Main.font, Frame.gameSize.width/2, 60, Text.CENTER);
+			Text.drawString("IMPOSSIBLE REALMS/", g, Main.font, Frame.gameSize.width/2, 75, Text.CENTER);
+			Text.drawString("GRAVITY GAMES INTERACTIVE", g, Main.font, Frame.gameSize.width/2, 90, Text.CENTER);
+		}else if(currentMenu==5){
+
+		}else if(currentMenu==6){
+			//Text.drawString("SCREEN SIZE", g, Main.font, Frame.gameSize.width/2, 30, Text.CENTER);
+			Text.drawString("SCREEN SIZE   < " + Integer.toString((Frame.windowSize.width/Frame.gameSize.width)) + "X >", g, Main.font, Frame.gameSize.width/2, 30, Text.CENTER);
+		}else if(currentMenu==7){
+			//Text.drawString("SCREEN SIZE", g, Main.font, Frame.gameSize.width/2, 30, Text.CENTER);
+			Text.drawString("MUSIC VOLUME   < " + Integer.toString((int)(Main.musicVolume * 100)) + "% >", g, Main.font, Frame.gameSize.width/2, 30, Text.CENTER);
+			Text.drawString("SFX VOLUME   < " + Integer.toString((int)(Main.soundVolume * 100)) + "% >", g, Main.font, Frame.gameSize.width/2, 45, Text.CENTER);
+
+			if (option==1){
+				pointer.paintIcon(this,g,45, 30-5);
+			}
+			if (option==2){
+				pointer.paintIcon(this,g,45, 45-5);
+			}
 		}
-		if (option==2){
-			pointer.paintIcon(this,g,45, 45-5);
-		}
-	}
 
 	}
 	private void playSound(){

@@ -31,7 +31,7 @@ public class Bullet extends Enemy{
 	}
 	
 	public void render(Graphics g, Component c){
-		 bullet.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+		 bullet.paintIcon(c,g,x-Level.scrollX,y-Level.scrollY);
 	}
 
 }

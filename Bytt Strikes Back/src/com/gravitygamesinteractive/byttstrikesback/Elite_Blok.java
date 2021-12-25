@@ -39,8 +39,8 @@ public class Elite_Blok extends Enemy{
 				fallSpeed+=1;
 			}else{
 				y+=fallSpeed;
-				if(Frame.sy>0){
-					Frame.sy+=fallSpeed;
+				if(Level.scrollY>0){
+					Level.scrollY+=fallSpeed;
 				}
 				jdecCount+=1;
 			}
@@ -109,17 +109,17 @@ public class Elite_Blok extends Enemy{
 	
 	public void render(Graphics g, Component c){
 		if(shootCount<95 && !shotOnce) {
-		eblok1.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+		eblok1.paintIcon(c,g,x-Level.scrollX,y-Level.scrollY);
 		}
 		 
 		 if(shootCount>=85 && shootCount<95){
-			 eblok2.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			 eblok2.paintIcon(c,g,x-Level.scrollX,y-Level.scrollY);
 		 }
 		 if (shootCount>=95){
-			 eblok3.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			 eblok3.paintIcon(c,g,x-Level.scrollX,y-Level.scrollY);
 		 }
 		 if (shootCount<95 && shotOnce){
-			 eblok4.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			 eblok4.paintIcon(c,g,x-Level.scrollX,y-Level.scrollY);
 		 }
 		 
 	}
@@ -151,11 +151,11 @@ public class Elite_Blok extends Enemy{
 					//}
 					}
 				if(Level.tile.get(f).id==9){
-					if (Frame.dir>=0){
+					if (Level.dir>=0){
 						//y=slopetemp;
 						return false;
 						}
-						if (Frame.dir<0){
+						if (Level.dir<0){
 							//y=slopetemp;
 							return false;
 							}

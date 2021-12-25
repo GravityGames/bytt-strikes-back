@@ -253,7 +253,7 @@ public class Main extends JPanel implements Runnable{
 		Kylex=((level.kyle.x-8)-Frame.sx);
 		Kyley=((level.kyle.y)-Frame.sy);*/
 
-			for(int e=0;e<level.tile.size();e++){
+		/*	for(int e=0;e<level.tile.size();e++){
 				if(level.tile.get(e).x>Frame.sx-32&&level.tile.get(e).y>Frame.sy-32&&level.tile.get(e).x<Frame.sx+Frame.gameSize.width+32&&level.tile.get(e).y<Frame.sy+Frame.gameSize.height+32){
 					level.tile.get(e).tick();
 				}
@@ -262,7 +262,7 @@ public class Main extends JPanel implements Runnable{
 				if(level.sprite.get(e).x>Frame.sx-100&&level.sprite.get(e).y>Frame.sy-100&&level.sprite.get(e).x<Frame.sx+Frame.gameSize.width+100&&level.sprite.get(e).y<Frame.sy+Frame.gameSize.height+100){
 					level.sprite.get(e).tick();
 				}
-			}
+			}*/
 		}
 		//repaint();
 		//System.out.println(Kylex);

@@ -34,8 +34,8 @@ public class Blok extends Enemy{
 				fallSpeed+=1;
 			}else{
 				y+=fallSpeed;
-				if(Frame.sy>0){
-					Frame.sy+=fallSpeed;
+				if(Level.scrollY>0){
+					Level.scrollY+=fallSpeed;
 				}
 				jdecCount+=1;
 			}
@@ -65,19 +65,19 @@ public class Blok extends Enemy{
 			animCount+=1;
 		}
 		if(animCount<=50){
-		 blok1.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+		 blok1.paintIcon(c,g,x-Level.scrollX,y-Level.scrollY);
 		}
 		if(animCount>50 && animCount<=60){
-			blok2.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+			blok2.paintIcon(c,g,x-Level.scrollX,y-Level.scrollY);
 		}
 if(animCount>60 && animCount<=70){
-	blok4.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+	blok4.paintIcon(c,g,x-Level.scrollX,y-Level.scrollY);
 		}
 if(animCount>70 && animCount<=80){
-	blok3.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+	blok3.paintIcon(c,g,x-Level.scrollX,y-Level.scrollY);
 }
 if(animCount>80 && animCount<=90){
-	blok4.paintIcon(c,g,x-Frame.sx,y-Frame.sy);
+	blok4.paintIcon(c,g,x-Level.scrollX,y-Level.scrollY);
 }
 	}
 	
@@ -108,11 +108,11 @@ if(animCount>80 && animCount<=90){
 					//}
 					}
 				if(Level.tile.get(f).id==9){
-					if (Frame.dir>=0){
+					if (Level.dir>=0){
 						//y=slopetemp;
 						return false;
 						}
-						if (Frame.dir<0){
+						if (Level.dir<0){
 							//y=slopetemp;
 							return false;
 							}

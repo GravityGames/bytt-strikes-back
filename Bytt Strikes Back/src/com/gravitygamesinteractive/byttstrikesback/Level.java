@@ -13,6 +13,13 @@ import com.gravitygamesinteractive.byttstrikesback.text.Text;
  
 public class Level extends JComponent{
 	private static final long serialVersionUID = 1L;
+	
+	public static int scrollX = 0, scrollY = 0;
+	
+	public static boolean isMoving=false;
+	public static boolean isJumping=false;
+	public static int dir;
+	
 	public static ArrayList<Tile> tile=new ArrayList<Tile>();
 	public static ArrayList<Enemy> sprite=new ArrayList<Enemy>();
 	public static Character kyle;
@@ -48,7 +55,7 @@ public class Level extends JComponent{
 		setStage();
 		setScroll();
 		Hero.health=heroHealth;
-		Frame.sx=0;
+		scrollX=0;
 		kyle.x=150;
 		kyle.y=240;
 		currentEnemy=1;
@@ -76,15 +83,15 @@ public class Level extends JComponent{
  
 	public void tick(){
 		kyle.tick();
-		Main.Kylex=kyle.x-8-Frame.sx;
-		Main.Kyley=kyle.y-Frame.sy;
+		Main.Kylex=kyle.x-8-scrollX;
+		Main.Kyley=kyle.y-scrollY;
 		for(int e=0;e<tile.size();e++){
-			if(tile.get(e).x>Frame.sx-32&&tile.get(e).y>Frame.sy-32&&tile.get(e).x<Frame.sx+Frame.gameSize.width+32&&tile.get(e).y<Frame.sy+Frame.gameSize.height+32){
+			if(tile.get(e).x>scrollX-32&&tile.get(e).y>scrollY-32&&tile.get(e).x<scrollX+Frame.gameSize.width+32&&tile.get(e).y<scrollY+Frame.gameSize.height+32){
 			tile.get(e).tick();
 			}
 		}
 		for(int e=0;e<sprite.size();e++){
-			if(sprite.get(e).x>Frame.sx-100&&sprite.get(e).y>Frame.sy-100&&sprite.get(e).x<Frame.sx+Frame.gameSize.width+100&&sprite.get(e).y<Frame.sy+Frame.gameSize.height+100){
+			if(sprite.get(e).x>scrollX-100&&sprite.get(e).y>scrollY-100&&sprite.get(e).x<scrollX+Frame.gameSize.width+100&&sprite.get(e).y<scrollY+Frame.gameSize.height+100){
 			sprite.get(e).tick();
 			}
 		}
@@ -99,8 +106,8 @@ public class Level extends JComponent{
 			if(heroCreated){
 				hero.tick();
 			}else{
-				if(Frame.sx<=0){
-					Frame.sx=0;
+				if(scrollX<=0){
+					scrollX=0;
 				hero = new Hero(0,300);
 				hero.health=heroHealth;
 				hero.deathCount=0;
@@ -108,7 +115,7 @@ public class Level extends JComponent{
 				hero.invinciblehurt=false;
 				heroCreated=true;
 				}else{
-					Frame.sx-=3;
+					scrollX-=3;
 				}
 			}
 		}
@@ -120,7 +127,7 @@ public class Level extends JComponent{
 		//g.setColor(new Color(153,217,234));
 		//g.fillRect(0, 0, Frame.size.width, Frame.size.height);
 		for(int d=0;d<tile.size();d++){
-			if(tile.get(d).x>Frame.sx-32&&tile.get(d).y>Frame.sy-32&&tile.get(d).x<Frame.sx+Frame.gameSize.width+32&&tile.get(d).y<Frame.sy+Frame.gameSize.height+32){
+			if(tile.get(d).x>scrollX-32&&tile.get(d).y>scrollY-32&&tile.get(d).x<scrollX+Frame.gameSize.width+32&&tile.get(d).y<scrollY+Frame.gameSize.height+32){
 				tile.get(d).render(g,this);
 			}
 	}
@@ -129,7 +136,7 @@ public class Level extends JComponent{
 			hero.render(g,this);
 		}
 		for(int t=0;t<sprite.size();t++){
-			if(sprite.get(t).x>Frame.sx-32&&sprite.get(t).y>Frame.sy-32&&sprite.get(t).x<Frame.sx+Frame.gameSize.width+32&&sprite.get(t).y<Frame.sy+Frame.gameSize.height+32){
+			if(sprite.get(t).x>scrollX-32&&sprite.get(t).y>scrollY-32&&sprite.get(t).x<scrollX+Frame.gameSize.width+32&&sprite.get(t).y<scrollY+Frame.gameSize.height+32){
 			sprite.get(t).render(g,this);
 			}	
 	}
