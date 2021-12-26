@@ -9,12 +9,13 @@ public class Tile{
 	public int id, priorety, x, y, width, height;
 	public int TileId;
 
-	private static final int TILE_SIZE = 16;
+	public static final int TILE_SIZE = 16;
 
 	public static Image tileset1;
 	
 	public Tile(int id,int x, int y, int TileId, int priorety){
 		this.id=id;
+		//this.id=0;
 		this.x=x;
 		this.y=y;
 		this.TileId=TileId;
@@ -35,6 +36,6 @@ public class Tile{
 	}
 
 	public void render(Graphics g, Component c){
-		g.drawImage(tileset1, x-Level.scrollX, y-Level.scrollY, x+16-Level.scrollX, y+16-Level.scrollY, ((TileId-1)%16)*TILE_SIZE, ((TileId-1)/16)*TILE_SIZE, (((TileId-1)%16)+1)*TILE_SIZE, (((TileId-1)/16)+1)*TILE_SIZE, null);
+		//g.drawImage(tileset1, x-Level.scrollX, y-Level.scrollY, x+16-Level.scrollX, y+16-Level.scrollY, ((TileId-1)%16)*TILE_SIZE, ((TileId-1)/16)*TILE_SIZE, (((TileId-1)%16)+1)*TILE_SIZE, (((TileId-1)/16)+1)*TILE_SIZE, null);
 	}
 }
